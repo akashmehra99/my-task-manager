@@ -1,0 +1,82 @@
+{
+  "name": "todos",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ui/todos/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/ui/todos",
+        "index": "ui/todos/src/index.html",
+        "baseHref": "/",
+        "main": "ui/todos/src/main.ts",
+        "tsConfig": "ui/todos/tsconfig.app.json",
+        "assets": ["ui/todos/src/favicon.ico", "ui/todos/src/assets"],
+        "styles": ["ui/todos/src/styles.css"],
+        "scripts": [],
+        "webpackConfig": "ui/todos/webpack.config.ts"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "ui/todos/src/environments/environment.ts",
+              "with": "ui/todos/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "webpackConfig": "ui/todos/webpack.config.prod.ts"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/react:module-federation-dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "todos:build",
+        "hmr": true,
+        "port": 4202
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "todos:build:development"
+        },
+        "production": {
+          "buildTarget": "todos:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/react:module-federation-static-server",
+      "defaultConfiguration": "production",
+      "options": {
+        "serveTarget": "todos:serve"
+      },
+      "configurations": {
+        "development": {
+          "serveTarget": "todos:serve:development"
+        },
+        "production": {
+          "serveTarget": "todos:serve:production"
+        }
+      }
+    }
+  }
+}

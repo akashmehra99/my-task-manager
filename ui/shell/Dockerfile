@@ -1,0 +1,24 @@
+# Use the official Node.js image as a base
+FROM node:22.7.0-alpine
+
+# Set working directory
+WORKDIR /usr/src/app
+
+# Copy package.json and package-lock.json
+COPY package*.json ./
+
+# Install dependencies
+RUN npm ci
+
+# Copy the application files
+COPY . .
+
+# Build the host application
+RUN npx nx reset
+RUN npx nx build shell
+
+# Expose the port the app runs on
+EXPOSE 4200
+
+# Command to run the app
+CMD ["npx", "serve", "-s", "dist/ui/shell", "-l", "4200"]

@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "login/Module": ["ui/login/src/remote-entry.ts"],
+      "todos/Module": ["ui/todos/src/remote-entry.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

@@ -1,0 +1,33 @@
+services:
+  shell:
+    build:
+      context: .
+      dockerfile: ui/shell/Dockerfile
+    ports:
+      - '4200:4200'
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - login
+      - todos
+
+  login:
+    build:
+      context: .
+      dockerfile: ui/login/Dockerfile
+    ports:
+      - '4201:4201'
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+
+  todos:
+    build:
+      context: .
+      dockerfile: ui/todos/Dockerfile
+    ports:
+      - '4202:4202'
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
