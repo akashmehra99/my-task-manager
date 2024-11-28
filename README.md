@@ -58,7 +58,7 @@ You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx 
 
 ## Docker build and Conatiner
 
-1. docker-compose build / docker-compose build --no-cache
+1. docker compose build / docker compose build --no-cache
 2. docker compose up
 
 ## Install Nx Console
