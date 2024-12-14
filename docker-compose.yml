@@ -32,6 +32,30 @@ services:
       - .:/usr/src/app
       - /usr/src/app/node_modules
 
+  # todos-api:
+  #   build:
+  #     context: .
+  #     dockerfile: backend/todos-api/Dockerfile
+  #   ports:
+  #     - '3001:3001'
+  #   environment:
+  #     - NODE_ENV=production
+  #   volumes:
+  #     - .:/usr/src/app
+  #     - /usr/src/app/node_modules
+
+  # auth-api:
+  #   build:
+  #     context: .
+  #     dockerfile: backend/auth-api/Dockerfile
+  #   ports:
+  #     - '3000:3000'
+  #   environment:
+  #     - NODE_ENV=production
+  #   volumes:
+  #     - .:/usr/src/app
+  #     - /usr/src/app/node_modules
+
   mongodb:
     image: mongo:latest
     container_name: mongodb

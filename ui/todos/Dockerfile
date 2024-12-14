@@ -1,5 +1,5 @@
 # Use the official Node.js image as a base
-FROM node:22.7.0-alpine
+FROM node:22.7.0
 
 # Set working directory
 WORKDIR /usr/src/app
